@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yp.base.BaseContoller;
+import com.yp.base.BaseController;
 
 @Controller(value="MainController")
-public class MainController extends BaseContoller {
+public class MainController extends BaseController {
 	
 	/**
 	 * @Description  : DB 연결테스트

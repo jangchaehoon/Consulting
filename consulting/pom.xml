@@ -23,7 +23,9 @@
 		<!-- Spring -->
 		<springframework-version>4.2.5.RELEASE</springframework-version>
 		<!-- Spring-security -->
-		<springframework-security-version>5.1.3.RELEASE</springframework-security-version>
+		<springframework-security-version>4.2.2.RELEASE</springframework-security-version>
+		<springframework-security-oauth-version>2.3.3.RELEASE</springframework-security-oauth-version>
+		<springframework-security-oauth2-version>2.0.14.RELEASE</springframework-security-oauth2-version>
 		<!-- aspectj -->
 		<aspectjrt-version>1.8.13</aspectjrt-version>
 		<aspectjweaver-version>1.9.1</aspectjweaver-version>
@@ -41,6 +43,19 @@
 		<jsp-version>2.2.1-b03</jsp-version>
 		<!-- sitemesh -->
 		<sitemesh-version>3.0.1</sitemesh-version>
+		<!-- log4j -->
+		<slf4j-version>1.7.25</slf4j-version>
+		<log4j-version>1.2.17</log4j-version>
+		<log4j-version2>2.17.1</log4j-version2>
+		<!-- Gson, json -->
+		<gson-version>2.8.7</gson-version>
+		<!-- jackson -->
+		<jackson-version>2.9.5</jackson-version>
+		<jackson-mapper-asl-version>1.9.13</jackson-mapper-asl-version>
+		<!-- swagger -->
+		<swagger-version>2.9.2</swagger-version>
+		<!-- jsonwebtoken -->
+		<jsonwebtoken-version>0.9.1</jsonwebtoken-version>
 	</properties>
 	
 	<!-- oracle -->
@@ -125,12 +140,68 @@
 		    <artifactId>aspectjrt</artifactId>
 		    <version>${aspectjrt-version}</version>
 		</dependency>
+		
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${aspectjweaver-version}</version>
 		</dependency>
 		
+		<!-- Spring security -->
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-acl</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+				
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springframework-security-version}</version>
+        </dependency>
+        
+		<dependency>
+		    <groupId>org.springframework.security.oauth</groupId>
+		    <artifactId>spring-security-oauth</artifactId>
+		    <version>${springframework-security-oauth-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security.oauth</groupId>
+		    <artifactId>spring-security-oauth2</artifactId>
+		    <version>${springframework-security-oauth2-version}</version>
+		</dependency>
+        
 		<!-- DataBase -->
 		<!-- oracle driver -->
 		<dependency>
@@ -192,6 +263,101 @@
 			<groupId>org.sitemesh</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>${sitemesh-version}</version>
+		</dependency>
+		
+		<!-- Log4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.mail</groupId>
+                    <artifactId>mail</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j-version2}</version>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j-version2}</version>
+		</dependency>
+        
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>${log4j-version2}</version>
+		</dependency>
+		
+		<!-- Gson, json -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.7</version>
+		</dependency>
+		
+		<!-- jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>${jackson-mapper-asl-version}</version>
+		</dependency>
+		
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>${swagger-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger-version}</version>
+		</dependency>
+		
+		<!-- jsonwebtoken -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt</artifactId>
+		    <version>${jsonwebtoken-version}</version>
 		</dependency>
 		
 	</dependencies>

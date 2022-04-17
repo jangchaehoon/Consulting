@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Common">
+
+	<sql id="PagingStartSql">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
+		SELECT tb1.seq
+			 , tb1.resource_id
+			 , tb1.resource_name
+			 , tb1.resource_pattren
+			 , tb1.resource_url
+			 , tb1.parents_resoruces_id
+			 , tb1.sort_no
+			 , tb1.use_yn
+			 , tb1.in_user
+			 , tb1.in_dtm
+			 , tb1.up_user
+			 , tb1.up_dtm
+		  FROM tbsy_menu tb1
+	</sql>
+
+	<sql id="PagingEndSql">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
+		SELECT tb1.seq
+			 , tb1.resource_id
+			 , tb1.resource_name
+			 , tb1.resource_pattren
+			 , tb1.resource_url
+			 , tb1.parents_resoruces_id
+			 , tb1.sort_no
+			 , tb1.use_yn
+			 , tb1.in_user
+			 , tb1.in_dtm
+			 , tb1.up_user
+			 , tb1.up_dtm
+		  FROM tbsy_menu tb1
+	</sql>
+	
+	<sql id="OrderBySql">
+		<if test="@com.yp.common.util.CommUtil@isNotEmpty(sort_column)">
+		ORDER BY ${sort_column}
+		</if>
+	</sql>
+	
+</mapper>

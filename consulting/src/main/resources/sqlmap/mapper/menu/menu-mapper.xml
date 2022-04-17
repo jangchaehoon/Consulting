@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Menu">
+
+	<sql id="selectMenuSql">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
+		SELECT tb1.seq
+			 , tb1.menu_id
+			 , tb1.menu_name
+			 , tb1.menu_pattren
+			 , tb1.menu_url
+			 , tb1.parents_menu_id
+			 , tb1.sort_no
+			 , tb1.use_yn
+			 , tb1.in_user_id
+			 , tb1.in_dtm
+			 , tb1.up_user_id
+			 , tb1.up_dtm
+			 , tb1.delete_yn
+			 , tb1.de_user_id
+			 , tb1.de_dtm
+		  FROM tbsy_menu tb1
+		 WHERE tb1.delete_yn = 'N'
+	</sql>
+	
+	<select id="selectMenuListPaging" parameterType="com.yp.main.MainVO" resultType="hmap">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회(페이징) */
+		<include refid="Common.PagingStartSql"/>
+		<include refid="selectMenuSql"/>
+		<include refid="Common.PagingEndSql"/>
+	</select>
+	
+	<select id="selectMenuList" parameterType="com.yp.main.MainVO" resultType="hmap">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 */
+		<include refid="selectMenuSql"/>
+		<include refid="Common.OrderBySql"/>
+	</select>
+	
+	<insert id="insertMenu" parameterType="com.yp.main.MainVO">
+		/* menu-mapper.xml id="insertMenu" 메뉴 입력 */
+		INSERT
+		  INTO tbsy_menu
+			 ( menu_id
+			 , menu_type
+			 , menu_name
+			 , menu_img_file_seq
+			 , menu_pattren
+			 , menu_url
+			 , parents_menu_id
+			 , sort_no
+			 , use_yn
+			 , in_user_id
+			 )
+		VALUES
+			 ( #{menu_id}
+			 , #{menu_type}
+			 , #{menu_name}
+			 , #{menu_img_file_seq}
+			 , #{menu_pattren}
+			 , #{menu_url}
+			 , #{parents_menu_id}
+			 , #{sort_no}
+			 , #{use_yn}
+			 , #{in_user_id}
+			 )
+	</insert>
+	
+	<update id="updateMenu" parameterType="com.yp.main.MainVO">
+		/* menu-mapper.xml id="updateMenu" 메뉴 수정 */
+		UPDATE tbsy_menu
+		   SET menu_type			= #{menu_type}
+			 , menu_name			= #{menu_name}
+			 , menu_img_file_seq	= #{menu_img_file_seq}
+			 , menu_pattren			= #{menu_pattren}
+			 , menu_url				= #{menu_url}
+			 , parents_menu_id		= #{parents_menu_id}
+			 , sort_no				= #{sort_no}
+			 , use_yn				= #{use_yn}
+			 , up_user_id			= #{up_user_id}
+			 , up_dtm				= NOW()
+		 WHERE seq	= #{seq}
+	</update>
+	
+	<delete id="deleteMenu" parameterType="com.yp.main.MainVO">
+		/* menu-mapper.xml id="deleteMenu" 메뉴 삭제 */
+		UPDATE tbsy_menu
+		   SET delete_yn	= 'Y'
+			 , de_user_id	= #{de_user_id}
+			 , de_dtm		= NOW()
+		 WHERE seq	= #{seq}
+	</delete>
+	
+</mapper>

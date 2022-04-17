@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SpringSecurity">
+	
+	<select id="selectUserView" parameterType="hmap" resultType="hmap">
+		/* springsecurity-mapper.xml selectUserView 사용자 조회 */
+		SELECT tb1.seq
+			 , tb1.user_id
+			 , tb1.user_name
+			 , tb2.role_id
+			 , tb2.last_login_dtm
+			 , TO_CHAR(now() , 'YYYY-MM-DD HH24:MI:SS') AS login_time
+			 , NVL(TB1.session_time, 30) AS session_time
+			 , TB2.pw_err_cnt
+		  FROM tbsy_user tb1
+		  JOIN tbsy_login tb2
+			ON tb1.user_id = tb2.user_id
+		 WHERE tb1.user_id = #{user_id}
+	</select>
+	
+	<select id="userIdCheck" parameterType="com.yp.user.UserVO" resultType="Integer">
+		/* springsecurity-mapper.xml userIdCheck 사용자 중복확인 */
+		SELECT COUNT(1)
+		  FROM tbsy_user tb1
+		 WHERE tb1.user_id = #{user_id}
+	</select>
+	
+	<insert id="insertLogin" parameterType="com.yp.user.UserVO">
+		/* springsecurity-mapper.xml insertLogin 사용자 로그인 정보 입력 */
+		INSERT
+		  INTO tbsy_login
+			 ( user_id
+			 , user_pw
+			 , role_id
+			 )
+		VALUES
+			 ( #{user_id}
+			 , #{user_pw}
+			 , 'USER'
+			 )
+	</insert>
+	
+	<insert id="insertUser" parameterType="com.yp.user.UserVO">
+		/* springsecurity-mapper.xml insertUser 사용자 입력 */
+		INSERT
+		  INTO tbsy_user
+			 ( user_id
+			 , user_name
+			 )
+		VALUES
+			 ( #{user_id}
+			 , #{user_name}
+			 )
+	</insert>
+	
+</mapper>

@@ -36,9 +36,46 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
     
+	<!-- JSONVIEW -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver"> 
+		<beans:property name="order" value="0"/> 
+	</beans:bean>
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8"></beans:property>
+	</beans:bean>
+    
     <context:component-scan base-package="com.yp" scoped-proxy="targetClass" use-default-filters="false">
         <context:include-filter expression="org.springframework.stereotype.Service" type="annotation"/>
         <context:include-filter expression="org.springframework.stereotype.Repository" type="annotation"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
+    
+    <!-- 인터셉터 객체 생성 -->
+    <beans:bean id="authenticationInterceptor" class="com.yp.system.InterceptorAdapter">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/**"/>
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+    
+	<beans:bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	    <beans:property name="supportedMediaTypes">
+	       <beans:list>
+	           <beans:value>application/json; charset=UTF-8</beans:value>
+	           <beans:value>application/x-www-form-urlencoded;charset=UTF-8</beans:value>
+	       </beans:list>
+	    </beans:property>
+	</beans:bean>
+    
+    <beans:bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <beans:property name="supportedMediaTypes">
+           <beans:list>
+               <beans:value>application/json; charset=UTF-8</beans:value>
+               <beans:value>application/x-www-form-urlencoded;charset=UTF-8</beans:value>
+           </beans:list>
+        </beans:property>
+    </beans:bean>
 </beans:beans>

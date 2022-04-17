@@ -1,0 +1,97 @@
+.width10{width:	10%;}
+.width20{width:	20%;}
+.width30{width:	30%;}
+.width40{width:	40%;}
+.width50{width:	50%;}
+.width60{width:	60%;}
+.width70{width:	70%;}
+.width80{width:	80%;}
+.width90{width:	90%;}
+.width100{width:100%;}
+
+.container{
+	width:	1000px	!important;
+}
+.overflow-hidden {
+	overflow:	hidden	!important;
+}
+.overflow-auto {
+	overflow: 	auto	!important;
+}
+.dropdown-hover:hover .dropdown-menu-hover {
+    display:	block	!important;
+    margin-top:	0		!important;
+}
+.inline-block{
+	display:	inline-block;
+}
+.text-center{
+	text-align:	center;
+}
+
+/* modal */
+.custom-modal{
+	position:		absolute	!important;
+	z-index:		999999		!important;
+	left:			0			!important;
+	top:			0			!important;
+	width:			100%		!important;
+	height:			100%		!important;
+	background:		rgba(200, 200, 200, 0.4)	!important;
+	place-items:	center		!important;
+	display:		grid		!important;
+}
+.custom-modal-items{
+	border:		1px solid	!important;
+	height:		200px		!important;
+	width:		400px		!important;
+	background-color: #fff	!important;
+}
+.custom-modal-title{
+	height:			20%		!important;
+	text-align:		center	!important;
+	background-color: #c0c0c0	!important;
+	padding-top:	5px		!important;
+	font-size:		20px	!important;
+	font-weight:	bold	!important;
+	letter-spacing:	10px	!important;
+}
+.custom-modal-contents{
+	height:		60%		!important;
+	padding:	20px	!important;
+}
+.custom-modal-bottom{
+	height:		20%		!important;
+	text-align:	center	!important;;
+}
+
+/* join */
+.join-title{
+	margin-top:		20px;
+	font-size:		25px;
+	font-weight:	bold;
+	text-align:		center;
+}
+.join-agree{
+	height:			10rem;
+	border:			solid 1px;
+	overflow-y:		scroll;
+	margin-top:		3rem;
+	background-color: #f8f8f8;
+	padding-left:	1rem;
+}
+.join-indent{
+	margin-left:	3rem;
+	white-space:	pre-line;
+	width:			90%
+}
+.join-form{
+	padding:		0 20%;
+}
+.join-item-title{
+	width: 20%
+}
+.join-item-footer{
+	width: 16%
+}
+

@@ -1,19 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <html>
-<body>
-	<c:if test="${not empty results}">
-		<c:forEach items="${results }" var="list" varStatus="status">
-			<h${status.count }>${list }</h${status.count }>
-		</c:forEach>
-	</c:if>
-	<c:if test="${empty results}">
-		<h2>빈 리스트</h2>
-	</c:if>
-</body>
-</html> --%>
 <!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html>
   <body>
 
     <!-- Hero Area Start -->
@@ -24,15 +12,15 @@
 				<button type="button" data-bs-target="#main_slide" data-bs-slide-to="1" aria-label="Slide 2"></button>
 				<button type="button" data-bs-target="#main_slide" data-bs-slide-to="2" aria-label="Slide 3"></button>
 			</div>
-			<div class="carousel-inner" style="height:600px;">
+			<div class="carousel-inner" style="height:400px;">
 				<div class="carousel-item h-100 active">
-					<img src="/resources/images/common/main.jpg" class="d-block w-100 h-100" onerror="imgError(this)">
+					<img src="/resources/images/common/main.jpg" class="d-block w-100 h-100" onerror="ypcustom.imgError(this)">
 				</div>
 				<div class="carousel-item h-100">
-					<img src="/resources/images/common/main2.jpg" class="d-block w-100 h-100" onerror="imgError(this)">
+					<img src="/resources/images/common/main2.jpg" class="d-block w-100 h-100" onerror="ypcustom.imgError(this)">
 				</div>
 				<div class="carousel-item h-100">
-					<img src="/resources/images/common/main3.jpg" class="d-block w-100 h-100" onerror="imgError(this)">
+					<img src="/resources/images/common/main3.jpg" class="d-block w-100 h-100" onerror="ypcustom.imgError(this)">
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#main_slide" data-bs-slide="prev">
