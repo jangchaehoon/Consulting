@@ -26,6 +26,10 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	ypcustom.init();
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_param = $('meta[name=csrf-param]').attr('content');
+    console.log(csrf_token)
+    console.log(csrf_param)
 });
 
 </script>
@@ -86,12 +90,22 @@ $(document).ready(function(){
 		<nav class="navbar navbar-expand-sm border-bottom" style="padding: 0.4rem 0" >
 			<div id="header_navbar_list" class="container-fluid collapse navbar-collapse d-flex flex-wrap align-items-center justify-content-center justify-content-md-between" style="height:1rem;">
 				<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-					<li class="nav-item">
-						<a href="#" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">로그인</a>
-					</li>
-					<li class="nav-item">
-						<a href="/user/joinAgree.go" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">회원가입</a>
-					</li>
+					<c:if test="${empty User.user_id }">
+						<li class="nav-item">
+							<a href="/user/login.go" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">로그인</a>
+						</li>
+						<li class="nav-item">
+							<a href="/user/joinAgree.go" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">회원가입</a>
+						</li>
+					</c:if>
+					<c:if test="${not empty User.user_id }">
+						<li class="nav-item">
+							<a href="/logout.do" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">로그아웃</a>
+						</li>
+					</c:if>
+						<li class="nav-item">
+							<a href="/system/menu/menu.go" class="nav-link px-4 link-dark" style="font-size:0.7rem; padding:0 1rem;">메뉴설정(임시)</a>
+						</li>
 				</ul>
 			</div>
 			<div class="container-fluid input-group input-group-sm" style="width:20rem;">

@@ -16,12 +16,15 @@
 
 	<typeAliases>
 	     <typeAlias alias="hmap" type="java.util.HashMap" />
-	     
 	     <typeAlias alias="Lhmap" type="java.util.LinkedHashMap" />
 	     <typeAlias alias="String"  type="java.lang.String"  />    
 	     <typeAlias alias="Integer" type="java.lang.Integer" />
 	     <typeAlias alias="Long"    type="java.lang.Long"    />
 	     <typeAlias alias="Double"  type="java.lang.Double"  />
-	</typeAliases> 
+	</typeAliases>
+	
+<plugins>
+    <plugin interceptor="com.yp.system.interceptor.QueryInterceptor"/>
+</plugins>
 
 </configuration>

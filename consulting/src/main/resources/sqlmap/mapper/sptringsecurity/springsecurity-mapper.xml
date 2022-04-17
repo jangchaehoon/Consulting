@@ -3,15 +3,15 @@
 
 <mapper namespace="SpringSecurity">
 	
-	<select id="selectUserView" parameterType="hmap" resultType="hmap">
+	<select id="selectUserView" parameterType="hmap" resultType="com.yp.security.model.User">
 		/* springsecurity-mapper.xml selectUserView 사용자 조회 */
-		SELECT tb1.seq
-			 , tb1.user_id
+		SELECT tb1.user_id
+			 , tb2.user_pw AS password
 			 , tb1.user_name
 			 , tb2.role_id
 			 , tb2.last_login_dtm
-			 , TO_CHAR(now() , 'YYYY-MM-DD HH24:MI:SS') AS login_time
-			 , NVL(TB1.session_time, 30) AS session_time
+			 , DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s') AS login_time
+			 , IFNULL(NULLIF(tb2.session_time, ''), 30) AS session_time
 			 , TB2.pw_err_cnt
 		  FROM tbsy_user tb1
 		  JOIN tbsy_login tb2

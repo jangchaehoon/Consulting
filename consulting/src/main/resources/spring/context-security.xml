@@ -7,10 +7,12 @@
                                  http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-	<http pattern="/comm/**/*"             security="none"/>
-    <http pattern="/resources/**/*"        security="none"/>
-    <http pattern="/favicon.ico"           security="none"/>
-    <http pattern="/user/*"           security="none"/>
+	<http pattern="/comm/**/*"				security="none"/>
+    <http pattern="/resources/**/*"			security="none"/>
+    <http pattern="/favicon.ico"			security="none"/>
+    <http pattern="/user/*"					security="none"/>
+	<http pattern="/**.ajax"				security="none"/>
+    <http pattern="/**/**.ajax"				security="none"/>
 
 	<http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManagerWeb">
 		<headers>
@@ -26,12 +28,12 @@
         
         <form-login 
         			login-processing-url="/login.do"
-        			username-parameter="login_id"
-        			password-parameter="login_pw"
+        			username-parameter="user_id"
+        			password-parameter="user_pw"
         			authentication-success-handler-ref="customSuccessHandler" 
         			authentication-failure-handler-ref="customFailureHandler" />
 		
-		<logout invalidate-session="true" logout-success-url="/login.go" logout-url="/logout.do" />
+		<logout invalidate-session="true" logout-success-url="/" logout-url="/logout.do" />
 		<csrf request-matcher-ref="csrfSecurityRequestMatcher"/>
     </http>
     

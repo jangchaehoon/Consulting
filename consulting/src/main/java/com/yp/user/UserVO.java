@@ -3,31 +3,13 @@ package com.yp.user;
 import com.yp.base.BaseVO;
 
 public class UserVO extends BaseVO {
-	private String user_id;
-	private String user_pw;
-	private String user_name;
 	private String login_ip;     /* 로그인IP   VARCHAR(40)  */
     private String login_dtm;    /* 로그인일시 DATETIME     */
 	private String pw_err_cnt;
 	
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public String getUser_pw() {
-		return user_pw;
-	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
-	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
+	private String access_token;
+	private String refresh_token;
+	
 	public String getLogin_ip() {
 		return login_ip;
 	}
@@ -46,6 +28,17 @@ public class UserVO extends BaseVO {
 	public void setPw_err_cnt(String pw_err_cnt) {
 		this.pw_err_cnt = pw_err_cnt;
 	}
-	
+	public String getAccess_token() {
+		return access_token;
+	}
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
+	public String getRefresh_token() {
+		return refresh_token;
+	}
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
+	}
 	
 }

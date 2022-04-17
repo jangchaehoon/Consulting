@@ -25,6 +25,31 @@
         <appender-ref ref="console"/>
         <appender-ref ref="all"/>
 	</logger>
+    <logger name="com.yp.common"  additivity="false">
+        <level value="error" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="all"/>
+    </logger>
+    
+    <logger name="com.yp.system.interceptor.InterceptorAdapter"  additivity="false">
+        <level value="warn" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="all"/>
+    </logger>
+    <logger name="com.yp.system.interceptor.QueryInterceptor"  additivity="false">
+        <level value="debug" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="all"/>
+    </logger>
+	<logger name="com.yp.system.interceptor.UpdateInterceptor"  additivity="false">
+        <level value="debug" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="all"/>
+    </logger>
+    <logger name="com.yp.common.util.InetUtil"  additivity="false">
+        <level value="info" />
+        <appender-ref ref="console"/>
+    </logger>
 	
 	<logger name="jdbc.sqlonly" additivity="false">
         <level value="info"/>
@@ -81,7 +106,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="DEBUG" />
+		<priority value="debug" />
         <appender-ref ref="all"/>
 	</root>
 	

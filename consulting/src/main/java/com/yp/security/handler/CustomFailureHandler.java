@@ -20,7 +20,7 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, 
 			AuthenticationException exception) throws IOException, ServletException {
 		logger.debug("onAuthenticationFailure");
-		String targetUrl = "/login.go";
+		String targetUrl = "/user/login.go";
 		SessionUtil.deleteSessionVO(request.getSession());
 		
 		request.setAttribute("SPRING_SECURITY_LAST_EXCEPTION", exception.getMessage());

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yp.base.BaseService;
+import com.yp.common.util.crypto.CryptoUtil;
 import com.yp.security.model.User;
 import com.yp.user.UserVO;
-import com.yp.user.login.LoginVO;
 
 @Service("UserService")
 public class UserService extends BaseService {
@@ -49,6 +49,18 @@ public class UserService extends BaseService {
 	 * @return       : void
 	 */
 	public void insertUser(UserVO userVO){
+		
+		String user_pw = userVO.getUser_pw();
+		
+		String encrypedSHA256PW = "";
+		try {
+			encrypedSHA256PW = CryptoUtil.encryptlogin(user_pw);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		
+		userVO.setUser_pw(encrypedSHA256PW);
+		
 		getUserDAO().insertLogin(userVO);
 		getUserDAO().insertUser(userVO);
 	}

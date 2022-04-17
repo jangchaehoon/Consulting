@@ -16,7 +16,6 @@ import com.yp.exception.MessageCommonCode;
 import com.yp.security.model.Role;
 import com.yp.security.model.User;
 import com.yp.user.UserVO;
-import com.yp.user.login.LoginVO;
 
 @Service(value = "CommonService")
 public class CommonService extends BaseService {
@@ -56,17 +55,19 @@ public class CommonService extends BaseService {
 		}else{//유저가 있을경우
 
 			// 비밀번호 오류 횟수가 5번 이상일 경우
+			/*
 			if(null != user.getPw_err_cnt() && !"".equals(user.getPw_err_cnt())) {
 				if(Integer.parseInt(user.getPw_err_cnt()) >= 5){
 					throw new BadCredentialsException("ERROVERPWDCNT");
 				}
 			}
+			*/
 			
 			if (!bCryptPasswordEncoder.matches(user_pw, user.getPassword())){//비밀번호가 틀렸을경우
-//				errorElement = MessageCommonCode.ERR0014;
-//				exmsg = errorElement.getMessage();
-//				throw new BadCredentialsException(exmsg);
-				throw new BadCredentialsException("ERRPWD" + user.getPw_err_cnt());
+				errorElement = MessageCommonCode.ERR0014;
+				exmsg = errorElement.getMessage();
+				throw new BadCredentialsException(exmsg);
+//				throw new BadCredentialsException("ERRPWD" + user.getPw_err_cnt());
 			}else{//비빌번호가 맞을 경우
 				/*
 				RoleList.put("user_id",user.getUser_id());

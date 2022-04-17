@@ -65,7 +65,7 @@
 	text-align:	center	!important;;
 }
 
-/* join */
+/* 회원가입 */
 .join-title{
 	margin-top:		20px;
 	font-size:		25px;
@@ -86,7 +86,7 @@
 	width:			90%
 }
 .join-form{
-	padding:		0 20%;
+	margin:	0 20%;
 }
 .join-item-title{
 	width: 20%
@@ -95,3 +95,30 @@
 	width: 16%
 }
 
+/* 로그인 */
+.login-form{
+	margin:		30px 25%;
+	border:		1px solid grey;
+	border-radius:	10px;
+	padding-top:	30px;
+	
+}
+.login-title{
+	text-align:		center;
+	font-size:		20px;
+	font-weight:	bold;
+}
+.login-item{
+	padding: 10px 20%;
+}
+.login-checkbox{
+	padding: 0 20%;
+}
+.login-footer{
+	margin: 30px 20%;
+}
+
+/* 메뉴 */
+.menu-table{
+	padding: 50px 10%;
+}

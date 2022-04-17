@@ -1,5 +1,7 @@
 package com.yp.base;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class BaseVO extends SearchVO {
 	
 	/* 기타 */
@@ -7,8 +9,15 @@ public class BaseVO extends SearchVO {
 	private String use_yn;
 	private String sort_column;
 	
+	private String token;
+	
+	private String session_time;
+	
 	/* 사용자 */
 	private String user_id;
+	private String user_name;
+	private String user_pw;
+	private String role_id;
 	
 	/* 입력, 수정, 삭제 */
 	private String in_user_id;
@@ -35,6 +44,30 @@ public class BaseVO extends SearchVO {
 		this.user_id = user_id;
 	}
 
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getUser_pw() {
+		return user_pw;
+	}
+
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
+	}
+
+	public String getRole_id() {
+		return role_id;
+	}
+
+	public void setRole_id(String role_id) {
+		this.role_id = role_id;
+	}
+
 	public String getIn_user_id() {
 		return in_user_id;
 	}
@@ -53,6 +86,22 @@ public class BaseVO extends SearchVO {
 
 	public void setSort_column(String sort_column) {
 		this.sort_column = sort_column;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getSession_time() {
+		return session_time;
+	}
+
+	public void setSession_time(String session_time) {
+		this.session_time = session_time;
 	}
 
 	public void setIn_user_id(String in_user_id) {

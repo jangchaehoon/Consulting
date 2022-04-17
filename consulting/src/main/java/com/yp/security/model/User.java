@@ -41,6 +41,9 @@ public class User implements UserDetails {
 	@ApiModelProperty(value="세션시간",allowEmptyValue=false,hidden=false)
 	private int session_time;
 
+	private String last_login_dtm;
+	private String access_token;
+	private String refresh_token;
 	private String pw_err_cnt;
 	
 	public Collection<? extends GrantedAuthority> getAuthorities() { return this.authorities; } 
@@ -143,6 +146,30 @@ public class User implements UserDetails {
 
 	public void setSession_time(int session_time) {
 		this.session_time = session_time;
+	}
+
+	public String getLast_login_dtm() {
+		return last_login_dtm;
+	}
+
+	public void setLast_login_dtm(String last_login_dtm) {
+		this.last_login_dtm = last_login_dtm;
+	}
+
+	public String getAccess_token() {
+		return access_token;
+	}
+
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
+
+	public String getRefresh_token() {
+		return refresh_token;
+	}
+
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
 	}
 
 	public String getPw_err_cnt() {

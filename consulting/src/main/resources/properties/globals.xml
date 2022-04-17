@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd" >
+<properties>
+	<comment>globals properties</comment>
+	<entry key="Globals.OsType">UNIX</entry>
+	<entry key="Globals.DBGubun">real</entry><!-- Globals.DBGubun의 real dev에 따라 운영 DB 개발 DB를 보도록 변경 중요!!! --> 
+	
+	<!-- MASTER DATABASE -->
+	<entry key="Globals.DbType">${${Globals.DBGubun}.Globals.DbType}</entry>
+	<entry key="Globals.DriverClassName">${${Globals.DBGubun}.Globals.DriverClassName}</entry>
+	<entry key="Globals.Url">${${Globals.DBGubun}.Globals.Url}</entry>
+	<entry key="Globals.UserName">${${Globals.DBGubun}.Globals.UserName}</entry>
+	<entry key="Globals.Password">${${Globals.DBGubun}.Globals.Password}</entry>
+	<entry key="Globals.httpdomain">${${Globals.DBGubun}.Globals.httpdomain}</entry>
+	<entry key="Globals.LogerYN">${${Globals.DBGubun}.Globals.LogerYN}</entry>
+	<entry key="Globals.apiConnectUrl">${${Globals.DBGubun}.Globals.apiConnectUrl}</entry>
+	
+	<!-- REAL DATABASE -->
+	<entry key="real.Globals.DbType">MariaDB</entry>
+	<entry key="real.Globals.DriverClassName">org.mariadb.jdbc.Driver</entry>
+	<entry key="real.Globals.Url">ENC(/CHhhMw79royY0fsKV+XuyXLOYdL7x4z4Q8cjIMtLb0wWJV74UI5lk30FZNNus9FsjO2sj+AfhIxND4x7Zy776t2QBWdZcqKT/KpDFSemkKIQEBKy37p04WDuWicfynAWmUKEASyuJKHc0jkqZ5R9Kavu8qLuY17)</entry>
+	<entry key="real.Globals.UserName">ENC(SXlz5tosjQvz6gp2v7BXwNAzG1QLxjVC)</entry>
+	<entry key="real.Globals.Password">ENC(wUEtTQMAl0qCD7jAUT7PIJHVUjZp5wO9Rxt9qbV2kKY=)</entry>
+	<entry key="real.Globals.LogerYN">Y</entry>
+	<entry key="real.Globals.apiConnectUrl">REAL</entry>
+	
+	<!-- DEV DATABASE -->
+	<entry key="dev.Globals.DbType">MariaDB</entry>
+	<entry key="dev.Globals.DriverClassName">org.mariadb.jdbc.Driver</entry>
+	<entry key="dev.Globals.Url">ENC(/CHhhMw79royY0fsKV+XuyXLOYdL7x4z4Q8cjIMtLb0wWJV74UI5lk30FZNNus9FsjO2sj+AfhIxND4x7Zy776t2QBWdZcqKT/KpDFSemkKIQEBKy37p04WDuWicfynAWmUKEASyuJKHc0jkqZ5R9Kavu8qLuY17)</entry>
+	<entry key="dev.Globals.UserName">ENC(SXlz5tosjQvz6gp2v7BXwNAzG1QLxjVC)</entry>
+	<entry key="dev.Globals.Password">ENC(wUEtTQMAl0qCD7jAUT7PIJHVUjZp5wO9Rxt9qbV2kKY=)</entry>
+	<entry key="dev.Globals.LogerYN">Y</entry>
+	<entry key="dev.Globals.apiConnectUrl">DEV</entry>
+	
+</properties>

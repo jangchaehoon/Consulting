@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yp.common.util.JwtTokenUtil;
+import com.yp.swagger.auth.AuthenticationSwaggerDAO;
+import com.yp.swagger.auth.AuthenticationSwaggerVO;
 
 @Component
 public class JwtAuthenticationFilter implements Filter {
@@ -28,8 +30,12 @@ public class JwtAuthenticationFilter implements Filter {
 	private JwtTokenUtil jwtTokenUtil = new JwtTokenUtil();
 	private Pattern allowedMethods = Pattern.compile("^(GET|POST|DELETE|PUT)$");
 	private Pattern allowedExceptionUrl = Pattern.compile("(\\/api/test/me)"
+														+ "/auth/sign-in"
 														+ "");
 	private Pattern allowedUrl = Pattern.compile("(\\/api/.*)"+ "");
+	
+	@Autowired
+	private AuthenticationSwaggerDAO authenticationSwaggerDAO;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException{}
@@ -54,8 +60,8 @@ public class JwtAuthenticationFilter implements Filter {
 			if(!allowedExceptionUrl.matcher(url).find()) {//예외 URL이 아닐경우
 				if(allowedMethods.matcher(Method).matches()){
 					Boolean isTokenExpired = jwtTokenUtil.isTokenExpired(token);
+					
 					if(token != null && isTokenExpired){// 토큰정보가 없거나 만료일 경우
-						/*
 						AuthenticationSwaggerVO authenticationSwaggerVO = new AuthenticationSwaggerVO();
 						authenticationSwaggerVO.setToken(token);
 						int tokenCount = authenticationSwaggerDAO.selectTokenHistCheckCount(authenticationSwaggerVO);
@@ -73,7 +79,6 @@ public class JwtAuthenticationFilter implements Filter {
 							httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 							return;
 						}
-						*/
 					}else{
 						logger.debug("SC_UNAUTHORIZED");
 						httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);

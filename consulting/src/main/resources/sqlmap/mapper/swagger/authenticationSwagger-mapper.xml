@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AuthenticationSwagger">
+
+	<sql id="selectTokenHistSql">
+		/* authenticationSwagger-mapper.xml selectTokenHistSql 토큰 조회 SQL  */
+		SELECT seq                  /* 일련번호                     BIGINT        */
+		     , mb_id                /* 회사id                       VARCHAR(20)   */
+		     , mb_api_id            /* 회원사 api 로그인 ID         VARCHAR(20)   */
+		     , emp_cd               /* 사번                         VARCHAR(100)  */
+		     , project_type         /* 프로젝트 타입                VARCHAR(100)  */
+		     , token_type           /* 토큰 타입                    VARCHAR(100)  */
+		     , token                /* API CONNECTOR 토큰           VARCHAR(4000) */
+		     , token_role           /* API CONNECTOR 토큰 권한      VARCHAR(8)    */
+		     , token_time           /* API CONNECTOR 토큰 제한 시간 VARCHAR(8)    */
+		     , token_validity_dt    /* API CONNECTOR 토큰유효일자   VARCHAR(40)      */
+		     , in_dtm               /* 입력일시                     DATETIME      */
+		     , up_dtm               /* 수정일시                     DATETIME      */
+		  FROM tbsy_token_hist /* API CONNECTOR 토큰 관리 */
+	</sql>
+	
+	<select id="selectTokenHistList" parameterType="com.yp.swagger.auth.AuthenticationSwaggerVO" resultType="hmap">
+		/* authenticationSwagger-mapper.xml selectTokenHistList 토큰 조회  */
+		<include refid="selectTokenHistSql"/>
+	</select>
+	
+	<select id="selectTokenHistView" parameterType="com.yp.swagger.auth.AuthenticationSwaggerVO" resultType="hmap">
+		/* authenticationSwagger-mapper.xml selectTokenHistView 토큰 한 건 조회  */
+		<include refid="selectTokenHistSql"/>
+	</select>
+	
+	<select id="selectTokenHistCheckCount" parameterType="com.yp.swagger.auth.AuthenticationSwaggerVO" resultType="Integer">
+		/* authenticationSwagger-mapper.xml selectTokenHistCheckCount 토큰 카운트 조회  */
+		SELECT COUNT(*)
+		  FROM tbsy_token_hist /* API CONNECTOR 토큰 관리 */
+		 WHERE token = #{token}
+	</select>
+
+	<insert id="insertTokenHist" parameterType="com.yp.swagger.auth.AuthenticationSwaggerVO">
+		/* authenticationSwagger-mapper.xml insertTokenHist 토큰 등록  */
+		INSERT
+		  INTO tbsy_token_hist /* API CONNECTOR 토큰 관리 */
+		     ( mb_id                /* 회사id                       VARCHAR(20)   */
+		     , emp_cd               /* 사번                         VARCHAR(100)  */
+		     , login_id
+		     , project_type         /* 프로젝트 타입                VARCHAR(100)  */
+		     , token_type           /* 토큰 타입                    VARCHAR(100)  */
+		     , token                /* API CONNECTOR 토큰           VARCHAR(4000) */
+		     , token_role           /* API CONNECTOR 토큰 권한      VARCHAR(8)    */
+		     , token_time           /* API CONNECTOR 토큰 제한 시간 VARCHAR(8)    */
+		     , token_validity_dt    /* API CONNECTOR 토큰유효일자   DATETIME      */
+		     , in_dtm               /* 입력일시                     DATETIME      */
+		     , up_dtm               /* 수정일시                     DATETIME      */
+		     )
+		VALUES
+		     ( #{mb_id}               /* 회사id                       VARCHAR(20)   */
+		     , #{emp_cd}              /* 사번                         VARCHAR(100)  */
+		     , #{login_id}
+		     , #{project_type}        /* 프로젝트 타입                VARCHAR(100)  */
+		     , #{token_type}          /* 토큰 타입                    VARCHAR(100)  */
+		     , #{token}               /* API CONNECTOR 토큰           VARCHAR(4000) */
+		     , #{token_role}          /* API CONNECTOR 토큰 권한      VARCHAR(8)    */
+		     , #{token_time}          /* API CONNECTOR 토큰 제한 시간 VARCHAR(8)    */
+		     , #{token_validity_dt}   /* API CONNECTOR 토큰유효일자   DATETIME      */
+		     , NOW()                  /* 입력일시                     DATETIME      */
+		     , NULL                   /* 수정일시                     DATETIME      */
+		     )
+	</insert>
+
+</mapper>

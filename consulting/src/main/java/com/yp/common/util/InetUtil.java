@@ -8,11 +8,13 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class InetUtil {
 	
-	private static final Logger logger = Logger.getLogger(InetUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(InetUtil.class);
 
 	/* 공인 및 프록시 */
 	public static String getClientIP(HttpServletRequest request) {

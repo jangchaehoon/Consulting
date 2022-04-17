@@ -23,14 +23,12 @@ import com.yp.base.BaseService;
 import com.yp.common.CommonService;
 import com.yp.security.model.User;
 import com.yp.user.UserVO;
-import com.yp.user.login.LoginVO;
 
 @Component
 public class CustomAuthenticationProvider extends BaseService implements AuthenticationProvider {
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
-		
 	@Autowired
 	private CommonService commService;
 	

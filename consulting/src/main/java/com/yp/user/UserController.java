@@ -60,7 +60,7 @@ public class UserController extends BaseController {
 	}
 	
 	/**
-	 * @Description  : 사용자 중복 확인
+	 * @Description  : 사용자 입력
 	 * @author       : JANGCHAEHOON
 	 * @since        : 2022. 04. 16
 	 * @return       : ModelAndView
@@ -71,5 +71,46 @@ public class UserController extends BaseController {
 		getUserService().insertUser(userVO);
 		
 		return "redirect:/index.go";
+	}
+	
+	/**
+	 * @Description  : 사용자 수정
+	 * @author       : JANGCHAEHOON
+	 * @since        : 2022. 04. 17
+	 * @return       : ModelAndView
+	 */
+	@RequestMapping(value="/user/updateUser.ajax")
+	public String updatUser(HttpServletRequest req, HttpServletRequest res, UserVO userVO) throws Exception{
+		
+		//getUserService().updateUser(userVO);
+		
+		return "redirect:/index.go";
+	}
+	
+	/**
+	 * @Description  : 사용자 삭제
+	 * @author       : JANGCHAEHOON
+	 * @since        : 2022. 04. 17
+	 * @return       : ModelAndView
+	 */
+	@RequestMapping(value="/user/deleteUser.ajax")
+	public String deleteUser(HttpServletRequest req, HttpServletRequest res, UserVO userVO) throws Exception{
+		
+		//getUserService().deleteUser(userVO);
+		
+		return "redirect:/index.go";
+	}
+	
+	/**
+	 * @Description  : 로그인 페이지 이동
+	 * @author       : JANGCHAEHOON
+	 * @since        : 2022. 04. 16
+	 * @return       : ModelAndView
+	 */
+	@RequestMapping(value="/user/login.go")
+	public ModelAndView login(HttpServletRequest req, HttpServletRequest res) throws Exception{
+		ModelAndView mv = new ModelAndView("/user/login");
+		
+		return mv;
 	}
 }

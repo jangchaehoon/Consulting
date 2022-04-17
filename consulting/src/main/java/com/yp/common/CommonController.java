@@ -21,9 +21,10 @@ import com.yp.common.util.InetUtil;
 import com.yp.common.util.JwtTokenUtil;
 import com.yp.common.util.SessionUtil;
 import com.yp.common.util.SessionVO;
+import com.yp.config.Constants;
+import com.yp.config.Constants.TOKEN_VALIDATE;
 import com.yp.security.model.User;
 import com.yp.user.UserVO;
-import com.yp.user.login.LoginVO;
 
 @Controller(value="CommonController")
 public class CommonController extends BaseController {
@@ -76,7 +77,6 @@ public class CommonController extends BaseController {
 					//엑세스 토큰 발급 - User에 담긴 정보로 60분짜리 토큰 생성
 					
 					try {
-						/*
 						int accessTokenTime = Constants.getTOKEN_VALIDATE(TOKEN_VALIDATE.TOKEN_VALID_MINUTE);
 						int refreshTokenTime = Constants.getTOKEN_VALIDATE(TOKEN_VALIDATE.TOKEN_VALID_MINUTE) * Constants.getTOKEN_VALIDATE(TOKEN_VALIDATE.TOKEN_VALID_HOUR) * Constants.getTOKEN_VALIDATE(TOKEN_VALIDATE.TOKEN_VALID_DAY);
 						
@@ -88,7 +88,6 @@ public class CommonController extends BaseController {
 						//세션에 등록
 						user.setAccess_token(access_token);
 						user.setRefresh_token(refresh_token);
-						*/
 					}catch(Exception e) {
 						logger.error("토큰 생성 실패!!!!!!!");
 						logger.error(e.getMessage());
@@ -107,7 +106,7 @@ public class CommonController extends BaseController {
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		logger.debug("logout.do");
 		logoutAction(req, res);
-		return "redirect:/login.go";
+		return "redirect:/";
 	}
 	
 	public void logoutAction(HttpServletRequest req, HttpServletResponse res){

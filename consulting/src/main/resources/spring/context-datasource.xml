@@ -10,13 +10,32 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 		
+    <bean id="environmentVariablesConfiguration" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+	    <property name="algorithm" value="PBEWithMD5AndDES"/>
+	    <property name="passwordEnvName" value="APP_ENCRYPTION_PASSWORD"/>
+	</bean>
+	    
+	<bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+	    <property name="config" ref="environmentVariablesConfiguration"/>
+	    <property name="password" value="ypConsulting648!"/>
+	</bean>
+	    
+	<bean id="gx.propertyConfigurer" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+	    <constructor-arg ref="configurationEncryptor"/>
+	    <property name="locations">
+	        <list>
+	            <value>classpath:/properties/globals.xml</value>
+	        </list>
+	    </property>
+	</bean>
+		
 	<alias name="dataSource-MariaDB" alias="dataSource" />
 	
     <bean id="dataSource-MariaDB" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"> 
-        <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-        <property name="url" value="jdbc:mariadb://34.64.112.25:3306/DEV_CONSULTING" />
-		<property name="username" value="DEV_CONSULTING"/>
-		<property name="password" value="R?b@9@Pay$G2RdZA"/>
+        <property name="driverClassName" value="${Globals.DriverClassName}"/>
+        <property name="url" value="${Globals.Url}" />
+        <property name="username" value="${Globals.UserName}"/>
+        <property name="password" value="${Globals.Password}"/>
         <property name="validationQuery" value="SELECT 1"/>
         <property name="initialSize" 	 value="50" />
         <property name="minIdle" 		 value="50" />

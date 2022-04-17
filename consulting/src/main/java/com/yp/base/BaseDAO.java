@@ -13,7 +13,8 @@ public class BaseDAO {
 	
 	private static final String mainMapper = "Main."; //main-mapper.xml
 	private static final String menuMapper = "Menu."; //menu-mapper.xml
-	private static final String springSecurityMapper = "SpringSecurity."; //menu-mapper.xml
+	private static final String springSecurityMapper = "SpringSecurity."; //SpringSecurity-mapper.xml
+	private static final String authenticationSwaggerMapper = "AuthenticationSwagger."; //authenticationSwagger-mapper.xml
 
 	public SqlSessionTemplate getSqlSession() {
 		return sqlSession;
@@ -29,6 +30,10 @@ public class BaseDAO {
 
 	public static String getSpringsecuritymapper() {
 		return springSecurityMapper;
+	}
+
+	public static String getAuthenticationswaggermapper() {
+		return authenticationSwaggerMapper;
 	}
 	
 }

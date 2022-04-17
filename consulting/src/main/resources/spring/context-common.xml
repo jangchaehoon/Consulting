@@ -23,7 +23,6 @@
 								 ">
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-    
    
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
     <!-- <resources mapping="/resources/**" location="/resources/" /> -->
@@ -51,13 +50,13 @@
     </context:component-scan>
     
     <!-- 인터셉터 객체 생성 -->
-    <beans:bean id="authenticationInterceptor" class="com.yp.system.InterceptorAdapter">
+    <beans:bean id="interceptorAdapter" class="com.yp.system.interceptor.InterceptorAdapter">
     </beans:bean>
     <!-- Interceptor 설정 -->
     <interceptors>
         <interceptor>
             <mapping path="/**"/>
-            <beans:ref bean="authenticationInterceptor"/>
+            <beans:ref bean="interceptorAdapter"/>
         </interceptor>
     </interceptors>
     
@@ -77,5 +76,8 @@
                <beans:value>application/x-www-form-urlencoded;charset=UTF-8</beans:value>
            </beans:list>
         </beans:property>
+    </beans:bean>
+    
+	<beans:bean id="startUp" class="com.yp.config.Startup" scope="singleton" lazy-init="false" init-method="init">
     </beans:bean>
 </beans:beans>
