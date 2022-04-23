@@ -1,6 +1,8 @@
 package com.yp.system.interceptor;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,10 +110,24 @@ public class InterceptorAdapter extends HandlerInterceptorAdapter {
 		    		}
 		    	}
 			}
-
-			MenuVO menuVO = new MenuVO();
 			
-			request.setAttribute("menuList", menuService.getMenuList(menuVO));
+			if(url.contains(".go")) {
+				MenuVO menuVO = new MenuVO();
+				menuVO.setSrch_menu_url(url);
+				
+				Map<String, Object> menuMap = menuService.getMenuView(menuVO);
+				if(menuMap != null) {
+					if(url.equals(menuMap.get("menu_url"))) {
+						request.setAttribute("menuRole", menuMap);
+					}
+				} else {
+					menuMap = new HashMap<String, Object>();
+					menuMap.put("menu_url", url);
+					menuMap.put("leftmenu", "N");
+					request.setAttribute("menuRole", menuMap);					
+				}
+			}
+			
 			request.setAttribute("User", user);
 			
 	    	/*

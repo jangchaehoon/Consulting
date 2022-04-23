@@ -1,5 +1,6 @@
 package com.yp.security;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.yp.base.BaseDAO;
+import com.yp.security.model.Role;
 import com.yp.security.model.User;
 import com.yp.user.UserVO;
 
@@ -22,6 +24,17 @@ public class UserDAO extends BaseDAO {
 	 */
 	public User selectUserView(Map<String, String> map){
 		return getSqlSession().selectOne(getSpringsecuritymapper() + "selectUserView", map);
+	}
+	
+	/**
+	 * @Description  : 권한 계층 조회
+	 * @author       : JANGCHAEHOON
+	 * @since        : 2022. 04. 16
+	 * @return       : ModelAndView
+	 */
+	public List<Role> SelectRolesHierarchyList(Map<String, String> map){
+		logger.debug("UserDAO.SelectRolesHierarchyList");
+		return getSqlSession().selectList(getSpringsecuritymapper()+"SelectRolesHierarchyList", map);
 	}
 	
 	/**

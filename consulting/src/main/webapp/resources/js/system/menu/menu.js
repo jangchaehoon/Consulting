@@ -1,71 +1,69 @@
-function agreeChk(){
-	var agreeCheck1 = $('#agreeCheck1').is(":checked");
-	var agreeCheck2 = $('#agreeCheck2').is(":checked");
-	
-	if(agreeCheck1 && agreeCheck2){
-		window.location.href = "/user/join.go";
-	} else {
-		ypcustom.alert('약관동의', '약관에 동의해주세요.');
-	}
-}
+var _csrf = $("meta[name='_csrf']").attr("name") + "=" + $("meta[name='_csrf']").attr("content");
 
-function beforeRedirect(){
-	ypcustom.confirm('주의', '변경사항이 저장되지 않을 수 있습니다.<br>뒤로가시겠습니까?', function(){
-		window.location.href = "/user/joinAgree.go";
+function srch(){
+	
+	var obj = Object();
+	$('#searchDiv').find("input").each(function(){
+		obj[$(this).attr("id")] = $(this).attr("value");
+	});
+	
+	ypcustom.srch({
+		url: '/system/menu/getMenuTableHtml.ajax',
+		target: 'menuTable',
+		date: obj
 	});
 }
 
-function idCheckInit(){
-	$('#idCheck').val('false');
+function menuRegi(seq){
+	
+	if(seq == undefined || seq == ''){
+		ypcustom.popOpen({
+			pid: "menuRegiHtml",
+			title: '메뉴 등록',
+			url: "/system/menu/menuRegiHtml.pop",
+			height: 650,
+			width: 500,
+			callbackFn: srch
+		})
+	} else {
+		ypcustom.popOpen({
+			pid: "menuRegiHtml",
+			title: '메뉴 추가',
+			url: "/system/menu/menuRegiHtml.pop",
+			data: {
+				seq: seq
+			},
+			height: 650,
+			width: 500,
+			callbackFn: srch
+		})
+	}
 }
 
-function userIdCheck(){
-	var flag = true;
-	var user_id = $('#user_id').val();
-	
-	if(!user_id){
-		ypcustom.alert("중복확인", "아이디를 입력해주세요.");
-		flag = false;
-	}
-	if(flag){
+function menuDelete(seq){
+	ypcustom.confirm('메뉴 삭제', '삭제하시겠습니까?', function(){
 		$.ajax({
-			url: "/user/userIdCheck.ajax",
+			url: "/system/menu/deleteMenu.ajax?" + _csrf,
 			type: "POST",
 			data: {
-				user_id: user_id
+				seq: seq
 			},
 			async: false,
 			success: function(results) {
-				var result = results.result;
-				if(result == 0){
-					ypcustom.alert("중복확인", "등록가능한 아이디입니다.");
-					$('#idCheck').val('true');
-				} else {
-					ypcustom.alert("중복확인", "중복된 아이디가 존재합니다.");
-					$('#idCheck').val('false');
-				}
+				ypcustom.alert("중복확인", "등록가능한 아이디입니다.");
+				srch();
 			},
 			error : function(request, status, error) {
 				ypcustom.alert("중복확인", "처리 중 에러가 발생하였습니다.");
-				$('#idCheck').val('false');
+				srch();
 			}
 		});
-	}
+	});
 }
 
-function pwCheck(){
-	var user_pw = $('#user_pw').val();
-	var user_pw_confirm = $('#user_pw_confirm').val();
-				  
-	if(user_pw != user_pw_confirm){
-		$('#pwCheckSpan').text('비밀번호 다름');
-	} else {
-		$('#pwCheckSpan').text('비밀번호 일치');
-	}
-}
-
-function formSubmit(){
+function beforeCheck(){
 	var flag = true;
+	/*
 	var idCheck = $('#idCheck').val();
 	
 	if(flag && idCheck != 'true'){
@@ -87,9 +85,32 @@ function formSubmit(){
 		ypcustom.alert("중복확인", "이름을 입력해주세요.");
 		flag = false;
 	}
-	
+	*/
+	return flag;
+}
+
+function formSubmit(){
+	var flag = beforeCheck();
 	if(flag){
-		$('#joinform').attr('action', "/user/insertUser.ajax");
-		$('#joinform').submit();
+		var seq = $('#seq').val();
+		var url = "";
+		if(seq != ''){
+			url = "/system/menu/updateMenu.ajax?" + _csrf;
+		} else {
+			url = "/system/menu/insertMenu.ajax?" + _csrf;
+		}
+		
+		$('#menuRegiform')
+			.ajaxForm({
+				url: url,
+				dataType: 'json',
+				success: function(results){
+					$('#pop_close' + $('#pid').val()).click();
+				},
+				error: function(err){
+					console.log(err)
+				}
+			});
+		$('#menuRegiform').submit();
 	}
 }

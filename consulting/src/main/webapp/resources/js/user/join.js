@@ -1,3 +1,5 @@
+var _csrf = $("meta[name='_csrf']").attr("name") + "=" + $("meta[name='_csrf']").attr("content");
+
 function agreeChk(){
 	var agreeCheck1 = $('#agreeCheck1').is(":checked");
 	var agreeCheck2 = $('#agreeCheck2').is(":checked");
@@ -29,7 +31,7 @@ function userIdCheck(){
 	}
 	if(flag){
 		$.ajax({
-			url: "/user/userIdCheck.ajax",
+			url: "/user/userIdCheck.ajax?" + _csrf,
 			type: "POST",
 			data: {
 				user_id: user_id
@@ -89,7 +91,7 @@ function formSubmit(){
 	}
 	
 	if(flag){
-		$('#joinform').attr('action', "/user/insertUser.ajax");
+		$('#joinform').attr('action', "/user/insertUser.ajax?" + _csrf);
 		$('#joinform').submit();
 	}
 }

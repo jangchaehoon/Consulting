@@ -142,6 +142,7 @@ public class QueryInterceptor implements Interceptor
         	logger.debug("Method=[{}], ID=[{}]",invocation.getMethod().getName(),ms.getId());
         	logger.debug("Query\n{}",sql);
             if(param != null) logger.debug("{}",param.toString());
+            logger.error(sql);
             logger.debug("====================================");
         }
         

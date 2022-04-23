@@ -4,28 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/resources/js/user/login.js" ></script>
+<script src="/resources/js/system/menu/menu.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$.ajax({
-			url: "/system/menu/getMenuTableHtml.ajax",
-			type: "POST",
-			dataType: "html",
-			async: false,
-			success: function(results) {
-				$('#menuTable').append(results)
-			},
-			error : function(request, status, error) {
-				ypcustom.alert("에러", "알수 없는 에러 발생")
-			}
-		});
+		srch();
+		
+		$('#btn_add').bind("click", function(){
+			menuRegi();
+		})
+		
 	});
 </script>
 </head>
 <body>
-	<div class="container">
-		<div class="menu-table" id="menuTable">
+	<div class="menu-body">
+		<div id="searchDiv">
+			<input type="hidden" id="sort_column" name="sort_column" value="parents_sort_no, lv, sort_no">
 		</div>
+		<button type="button" class="btn btn-light" id="btn_add">추가</button>
+		
+		<div class="menu-table" id="menuTable"></div>
 	</div>
 </body>
 </html>

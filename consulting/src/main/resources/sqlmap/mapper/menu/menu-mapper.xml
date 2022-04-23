@@ -5,12 +5,16 @@
 
 	<sql id="selectMenuSql">
 		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
-		SELECT tb1.seq
+		<include refid="Common.MenuTreeSql"/>
+		SELECT tb1.lv
+			 , tb1.seq
 			 , tb1.menu_id
+			 , tb1.menu_type
 			 , tb1.menu_name
 			 , tb1.menu_pattren
 			 , tb1.menu_url
 			 , tb1.parents_menu_id
+			 , tb3.menu_name AS parents_menu_name
 			 , tb1.sort_no
 			 , tb1.use_yn
 			 , tb1.in_user_id
@@ -20,21 +24,43 @@
 			 , tb1.delete_yn
 			 , tb1.de_user_id
 			 , tb1.de_dtm
-		  FROM tbsy_menu tb1
-		 WHERE tb1.delete_yn = 'N'
+			 , IFNULL(tb2.cnt, 0) AS child_cnt
+			 , tb1.parents_sort_no
+		  FROM menu_cte tb1
+	 LEFT JOIN (SELECT COUNT(1) AS cnt
+					 , parents_menu_id
+				  FROM menu_cte
+			  GROUP BY parents_menu_id) tb2
+			ON tb1.menu_id = tb2.parents_menu_id
+	 LEFT JOIN menu_cte tb3
+			ON tb1.parents_menu_id = tb3.menu_id
+		 WHERE 1 = 1
+		   <if test="@com.yp.common.util.CommUtil@isNotEmpty(seq)">
+		   AND tb1.seq = #{seq}
+		   </if>
+		   <if test="@com.yp.common.util.CommUtil@isNotEmpty(srch_menu_url)">
+		   AND tb1.menu_url = #{srch_menu_url}
+		   </if>
 	</sql>
 	
 	<select id="selectMenuListPaging" parameterType="com.yp.main.MainVO" resultType="hmap">
-		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회(페이징) */
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 리스트 조회(페이징) */
 		<include refid="Common.PagingStartSql"/>
 		<include refid="selectMenuSql"/>
 		<include refid="Common.PagingEndSql"/>
 	</select>
 	
 	<select id="selectMenuList" parameterType="com.yp.main.MainVO" resultType="hmap">
-		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 */
-		<include refid="selectMenuSql"/>
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 리스트 조회 */
+		SELECT tb1.*
+		  FROM (<include refid="selectMenuSql"/>) tb1
 		<include refid="Common.OrderBySql"/>
+	</select>
+	
+	<select id="selectMenuView" parameterType="com.yp.main.MainVO" resultType="hmap">
+		/* menu-mapper.xml id="selectMenuSql" 메뉴 단건 조회 */
+		SELECT tb1.*
+		  FROM (<include refid="selectMenuSql"/>) tb1
 	</select>
 	
 	<insert id="insertMenu" parameterType="com.yp.main.MainVO">

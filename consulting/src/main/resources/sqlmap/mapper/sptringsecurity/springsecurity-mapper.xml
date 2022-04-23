@@ -19,6 +19,13 @@
 		 WHERE tb1.user_id = #{user_id}
 	</select>
 	
+	<select id="SelectRolesHierarchyList" parameterType="hmap" resultType="com.yp.security.model.Role">
+		/* springsecurity-mapper.xml SelectRolesHierarchyList 권한 하위계층조회 */
+		<include refid="Common.RolesHierarchyTree"/>
+		SELECT role_id as name
+		  FROM hierarchy_cte
+	</select>
+	
 	<select id="userIdCheck" parameterType="com.yp.user.UserVO" resultType="Integer">
 		/* springsecurity-mapper.xml userIdCheck 사용자 중복확인 */
 		SELECT COUNT(1)

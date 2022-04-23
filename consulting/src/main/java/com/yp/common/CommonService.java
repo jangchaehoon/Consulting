@@ -69,7 +69,7 @@ public class CommonService extends BaseService {
 				throw new BadCredentialsException(exmsg);
 //				throw new BadCredentialsException("ERRPWD" + user.getPw_err_cnt());
 			}else{//비빌번호가 맞을 경우
-				/*
+				
 				RoleList.put("user_id",user.getUser_id());
 				RoleList.put("role_id",user.getRole_id());
 				// 권한세팅
@@ -81,7 +81,6 @@ public class CommonService extends BaseService {
 				}else{
 					user.setAuthorities(roles);
 				}
-				*/
 			}
 		}
 		return user;

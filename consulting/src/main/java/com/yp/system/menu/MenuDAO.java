@@ -21,6 +21,16 @@ public class MenuDAO extends BaseDAO {
 	}
 	
 	/**
+	 * @Description  : 메뉴 단건 조회
+	 * @author       : JANGCHAEHOON
+	 * @since        : 2022. 04. 23
+	 * @return       : List<Map<String, Object>>
+	 */
+	public Map<String, Object> selectMenuView(MenuVO menuVO){
+		return getSqlSession().selectOne(getMenumapper() + "selectMenuView", menuVO);
+	}
+	
+	/**
 	 * @Description  : 메뉴 리스트 입력
 	 * @author       : JANGCHAEHOON
 	 * @since        : 2022. 04. 16

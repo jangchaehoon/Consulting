@@ -43,4 +43,80 @@
 		</if>
 	</sql>
 	
+	<sql id="RolesHierarchyTree">
+		WITH recursive hierarchy_cte
+		  AS (SELECT 1 AS level
+				   , tb1.parent_role_id    /* 부모롤ID   VARCHAR(50) */
+				   , tb1.role_id    /* 자식롤ID   VARCHAR(50) */
+				   , tb1.in_user_id
+				   , tb1.in_dtm
+				   , tb1.up_user_id
+				   , tb1.up_dtm
+				FROM tbsy_roles_hierarchy tb1
+			   WHERE tb1.delete_yn = 'N'
+				 AND tb1.role_id = #{role_id}
+		   UNION ALL
+			  SELECT level + 1 AS level
+				   , tb2.parent_role_id    /* 자식롤ID   VARCHAR(50) */
+				   , tb2.role_id    /* 부모롤ID   VARCHAR(50) */
+				   , tb2.in_user_id
+				   , tb2.in_dtm
+				   , tb2.up_user_id
+				   , tb2.up_dtm
+				FROM tbsy_roles_hierarchy tb2
+		  INNER JOIN hierarchy_cte tb3
+				  ON tb2.parent_role_id = tb3.role_id
+			 )
+	</sql>
+	
+	<sql id="MenuTreeSql">
+		WITH RECURSIVE menu_cte
+		  AS (SELECT 1 AS lv
+				   , tb1.sort_no AS sort_no
+				   , tb1.sort_no AS parents_sort_no
+				   , tb1.seq
+				   , tb1.menu_id
+				   , tb1.menu_type
+				   , tb1.menu_name
+				   , tb1.menu_img_file_seq
+				   , tb1.menu_pattren
+				   , tb1.menu_url
+				   , tb1.parents_menu_id
+				   , tb1.use_yn
+				   , tb1.in_user_id
+				   , tb1.in_dtm
+				   , tb1.up_user_id
+				   , tb1.up_dtm
+				   , tb1.delete_yn
+				   , tb1.de_user_id
+				   , tb1.de_dtm
+				FROM tbsy_menu tb1
+			   WHERE delete_yn = 'N'
+			     AND parents_menu_id = 'CM_000'
+		   UNION ALL
+			  SELECT lv + 1 AS lv
+				   , tb2.sort_no AS sort_no
+				   , tb3.sort_no AS parents_sort_no
+				   , tb2.seq
+				   , tb2.menu_id
+				   , tb2.menu_type
+				   , tb2.menu_name
+				   , tb2.menu_img_file_seq
+				   , tb2.menu_pattren
+				   , tb2.menu_url
+				   , tb2.parents_menu_id
+				   , tb2.use_yn
+				   , tb2.in_user_id
+				   , tb2.in_dtm
+				   , tb2.up_user_id
+				   , tb2.up_dtm
+				   , tb2.delete_yn
+				   , tb2.de_user_id
+				   , tb2.de_dtm
+				FROM tbsy_menu tb2
+				JOIN menu_cte tb3
+				  ON tb2.parents_menu_id = tb3.menu_id
+			   WHERE tb2.delete_yn = 'N')
+	</sql>
+	
 </mapper>

@@ -11,9 +11,9 @@
     <mapping path="/fonts/*" exclude="true"/>
     <mapping path="/css/*" exclude="true"/>
     <mapping path="/js/*" exclude="true"/>
+    <mapping path="/comm/*" exclude="true"/>
     <!-- 
 	<mapping path="/login.go" exclude="true"/>
-    <mapping path="/comm/*" exclude="true"/>
     <mapping path="/html/*" exclude="true"/>
     <mapping path="/images/*" exclude="true"/>
     <mapping path="/files/*" exclude="true"/> 

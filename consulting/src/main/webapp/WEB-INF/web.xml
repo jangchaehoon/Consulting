@@ -77,5 +77,46 @@
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
+	
+	<error-page>
+    <error-code>401</error-code>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>405</error-code>
+    <location>/index.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.NullPointerException</exception-type>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.sql.SQLException</exception-type>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>com.mysql.jdbc.exceptions.jdbc4.CommunicationsException</exception-type>
+    <location>/WEB-INF/views/common/error403.jsp</location>
+  </error-page>
  
 </web-app>
