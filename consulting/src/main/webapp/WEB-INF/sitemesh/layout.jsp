@@ -38,7 +38,7 @@ $(document).ready(function(){
 <input type="hidden" id="parents_menu_id" name="parents_menu_id" value="${menuRole.parents_menu_id }">
 <input type="hidden" id="menu_url" name="menu_url" value="${menuRole.menu_url }">
 <input type="hidden" id="leftmenu" name="leftmenu" value="${menuRole.leftmenu }">
-<body id="topBody" class="overflow-hidden">
+<body id="topBody">
 	<!-- Header Area wrapper Starts -->
 	<div id="header_navbar" class="container fixed-top bg-white" style="height:122px;">
 		<nav class="navbar navbar-expand navbar-light pb-0" >
@@ -86,17 +86,45 @@ $(document).ready(function(){
 					</div>
 				</div>
 				</c:if>
-				<div class="col">
+				<div class="col" style="min-height: 600px;">
 					<sitemesh:write property='body'/>
 				</div>
 			</div>
 		</div>
+		<div class="container footer-area">
+			<div class="row">
+				<div class="col-1">
+				</div>
+				<div class="col-2 footer-image">
+					<img src="/resources/images/common/logo.png" >
+				</div>
+				<div class="col">
+					<div>
+						<div class="inline-block border-right footer-text">상담센터</div>
+						<div class="inline-block border-right footer-text">개인정보취금방침</div>
+						<div class="inline-block border-right footer-text">이용약관</div>
+						<div class="inline-block border-right footer-text">오시는길</div>
+						<div class="inline-block border-right footer-text">후원하기</div>
+						<div class="inline-block border-right footer-text">문의하기</div>
+					</div>
+					<div class="col-left">
+						<div>
+							<div class="inline-block">대표이사: 000</div>
+							<div class="inline-block">주소 : 서울특별시 00구 00로 00빌딩</div>
+						</div>
+						<div>
+							<div class="inline-block">대표전화 : 02) 000-0000</div>
+							<div class="inline-block">팩스 : 02) 000-0000</div>
+							<div class="inline-block">이메일 : aaa@gmail.com</div>
+						</div>
+						<div>
+							Copyright 0000--0000 test.com. All rights reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	
-    <footer id="footer" class="bg-gray-800 py-16">
-           
-    </footer>
-    <!-- Footer Section End -->
 
 </body>
 </html>

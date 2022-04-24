@@ -24,9 +24,6 @@ public class MenuController extends BaseController {
 	public ModelAndView menu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView mv = new ModelAndView("/system/menu/menu");
 		
-		MenuVO menuVO = new MenuVO();
-		mv.addObject("results", getMenuService().getMenuList(menuVO));
-		
 		return mv;
 	}
 	

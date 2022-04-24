@@ -15,6 +15,7 @@ public class BaseDAO {
 	private static final String menuMapper = "Menu."; //menu-mapper.xml
 	private static final String springSecurityMapper = "SpringSecurity."; //SpringSecurity-mapper.xml
 	private static final String authenticationSwaggerMapper = "AuthenticationSwagger."; //authenticationSwagger-mapper.xml
+	private static final String commonCodeMapper = "CommonCode."; //commonCode-mapper.xml
 
 	public SqlSessionTemplate getSqlSession() {
 		return sqlSession;
@@ -34,6 +35,10 @@ public class BaseDAO {
 
 	public static String getAuthenticationswaggermapper() {
 		return authenticationSwaggerMapper;
+	}
+
+	public static String getCommoncodemapper() {
+		return commonCodeMapper;
 	}
 	
 }

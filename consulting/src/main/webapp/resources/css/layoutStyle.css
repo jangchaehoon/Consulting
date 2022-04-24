@@ -3,7 +3,7 @@ body, table, div, ui, li, a, button, .btn {
 	font-family: Nanum Gothic, Tahoma, Geneva, sans-serif;
 }
 
-td {
+td, span {
 	white-space:nowrap;
 	text-overflow:ellipsis;
 	overflow:hidden;
@@ -16,6 +16,11 @@ input{
 
 .nav-item{
 	cursor: pointer;
+}
+
+.carousel-indicators{
+	margin-right: 0;
+	margin-left: 0;
 }
 
 .width10{width:	10%;}
@@ -51,6 +56,9 @@ input{
 	text-align: center;
 	vertical-align: middle;
 }
+.col-left {
+	text-align: left;
+}
 .col-rigth {
 	text-align: right;
 }
@@ -63,6 +71,56 @@ input{
 }
 .text-center{
 	text-align:	center;
+}
+.border-right{
+	border-right: 1px solid gray;
+}
+
+.nav-item>.active, .active>.page-link{
+	border: 1px solid #00ffff !important;
+	background:linear-gradient(270deg, #00ffff, #fff 20%) !important;
+	color: #000 !important;
+}
+
+.active>.page-link{
+	border-color: #00ffff !important;
+	background:linear-gradient(330deg, #00ffff, #fff 55%) !important;
+	color: #000 !important;
+}
+
+/* footer */
+.footer-area{
+	border-top: 1px solid;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	padding-top: 40px;
+}
+.footer-text{
+	text-align: center;
+	padding-right: 30px;
+	margin-right: 30px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.footer-image{
+	align-self: center;
+}
+.footer-image>img{
+	width: 100%;
+}
+
+/* spinner */
+.customer-spinner{
+	position:		absolute	!important;
+	z-index:		999999		!important;
+	left:			0			!important;
+	top:			0			!important;
+	width:			100%		!important;
+	height:			100%		!important;
+	background:		rgba(200, 200, 200, 0.4)	!important;
+	place-items:	center		!important;
+	display:		grid		!important;
 }
 
 /* modal */
@@ -201,4 +259,32 @@ input{
 }
 .leftmenu-contents{
 	padding-top: 15px;
+}
+
+.main-board-image-area{
+	padding-top: 10px;
+}
+
+.main-board-imgae{
+	display:inline-block;
+	width: 28%;
+}
+
+.main-board-imgae>img{
+	width: 100px;
+	height: 100px;
+}
+
+.main-board-imgae>span{
+	width: 100px;
+	display: inline-block;
+	text-align: initial;
+}
+
+.main-board-carousel-prev{
+	justify-content: start;
+}
+
+.main-board-carousel-next{
+	justify-content: end;
 }

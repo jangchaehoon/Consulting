@@ -8,9 +8,11 @@ public class BaseVO extends SearchVO {
 	private String sort_column;
 	private String sort_no;
 	private String json_string;
-	
+	private String page;
+	private String page_size;
+	private int page_offset;
+	private String total;
 	private String token;
-	
 	private String session_time;
 	
 	/* 사용자 */
@@ -57,6 +59,30 @@ public class BaseVO extends SearchVO {
 	}
 	public void setJson_string(String json_string) {
 		this.json_string = json_string;
+	}
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
+	}
+	public String getPage_size() {
+		return page_size;
+	}
+	public void setPage_size(String page_size) {
+		this.page_size = page_size;
+	}
+	public int getPage_offset() {
+		return page_offset;
+	}
+	public void setPage_offset(int page_offset) {
+		this.page_offset = page_offset;
+	}
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
 	}
 	public String getToken() {
 		return token;

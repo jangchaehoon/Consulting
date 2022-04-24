@@ -1,11 +1,13 @@
 package com.yp.system.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
 import com.yp.base.BaseDAO;
+import com.yp.common.util.CommUtil;
 
 @Repository(value = "MenuDAO")
 public class MenuDAO extends BaseDAO {
@@ -17,7 +19,17 @@ public class MenuDAO extends BaseDAO {
 	 * @return       : List<Map<String, Object>>
 	 */
 	public List<Map<String, Object>> selectMenuList(MenuVO menuVO){
-		return getSqlSession().selectList(getMenumapper() + "selectMenuList", menuVO);
+		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+		
+		if(CommUtil.isNotEmpty(menuVO.getPage())) {
+			if(CommUtil.isEmpty(menuVO.getSort_column())) {
+				menuVO.setSort_column("1");
+			}
+			result = getSqlSession().selectList(getMenumapper() + "selectMenuListPaging", menuVO);
+		} else {
+			result = getSqlSession().selectList(getMenumapper() + "selectMenuList", menuVO);
+		}
+		return result;
 	}
 	
 	/**

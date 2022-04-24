@@ -7,7 +7,7 @@
 <script src="/resources/js/system/menu/menu.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		srch();
+		//srch();
 		
 		$('#btn_add').bind("click", function(){
 			menuRegi();

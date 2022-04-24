@@ -4,10 +4,10 @@ function srch(){
 	
 	var obj = Object();
 	$('#searchDiv').find("input").each(function(){
-		obj[$(this).attr("id")] = $(this).attr("value");
+		obj[$(this).attr("id")] = $(this).val();
 	});
 	
-	ypcustom.srch({
+	ypcustom.srchPaging({
 		url: '/system/menu/getMenuTableHtml.ajax',
 		target: 'menuTable',
 		date: obj

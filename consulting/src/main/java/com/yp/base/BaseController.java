@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.yp.main.MainService;
 import com.yp.security.UserService;
 import com.yp.swagger.auth.AuthenticationSwaggerService;
+import com.yp.system.commoncode.CommonCodeService;
 import com.yp.system.menu.MenuService;
 
 @Controller(value="BaseController")
@@ -22,6 +23,9 @@ public class BaseController {
 	
 	@Autowired
 	private AuthenticationSwaggerService authenticationSwaggerService;
+	
+	@Autowired
+	private CommonCodeService commonCodeService;
 
 	public MainService getMainService() {
 		return mainService;
@@ -53,6 +57,14 @@ public class BaseController {
 
 	public void setAuthenticationSwaggerService(AuthenticationSwaggerService authenticationSwaggerService) {
 		this.authenticationSwaggerService = authenticationSwaggerService;
+	}
+
+	public CommonCodeService getCommonCodeService() {
+		return commonCodeService;
+	}
+
+	public void setCommonCodeService(CommonCodeService commonCodeService) {
+		this.commonCodeService = commonCodeService;
 	}
 	
 }

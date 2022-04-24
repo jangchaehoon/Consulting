@@ -4,37 +4,24 @@
 <mapper namespace="Common">
 
 	<sql id="PagingStartSql">
-		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
-		SELECT tb1.seq
-			 , tb1.resource_id
-			 , tb1.resource_name
-			 , tb1.resource_pattren
-			 , tb1.resource_url
-			 , tb1.parents_resoruces_id
-			 , tb1.sort_no
-			 , tb1.use_yn
-			 , tb1.in_user
-			 , tb1.in_dtm
-			 , tb1.up_user
-			 , tb1.up_dtm
-		  FROM tbsy_menu tb1
+		SELECT AA.*
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY ${sort_column}) AS rn
+		  			 , COUNT(*) OVER() AS total
+		  			 , A.*
+		          FROM (
 	</sql>
 
 	<sql id="PagingEndSql">
-		/* menu-mapper.xml id="selectMenuSql" 메뉴 조회 sql */
-		SELECT tb1.seq
-			 , tb1.resource_id
-			 , tb1.resource_name
-			 , tb1.resource_pattren
-			 , tb1.resource_url
-			 , tb1.parents_resoruces_id
-			 , tb1.sort_no
-			 , tb1.use_yn
-			 , tb1.in_user
-			 , tb1.in_dtm
-			 , tb1.up_user
-			 , tb1.up_dtm
-		  FROM tbsy_menu tb1
+	<![CDATA[
+		               ) A
+		       ) AA
+		 WHERE rn <= ${page} * ${page_size}
+		   AND rn > (${page}-1) * ${page_size}
+
+	]]>
+		<if test="@com.yp.common.util.CommUtil@isNotEmpty(sort_column)">
+		ORDER BY ${sort_column}
+		</if>
 	</sql>
 	
 	<sql id="OrderBySql">

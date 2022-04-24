@@ -8,6 +8,8 @@ import com.yp.main.MainDAO;
 import com.yp.security.UserDAO;
 import com.yp.security.model.User;
 import com.yp.swagger.auth.AuthenticationSwaggerDAO;
+import com.yp.system.commoncode.CommonCodeController;
+import com.yp.system.commoncode.CommonCodeDAO;
 import com.yp.system.menu.MenuDAO;
 
 @Service(value = "BaseService")
@@ -28,6 +30,9 @@ public class BaseService {
 	
 	@Autowired
 	private AuthenticationSwaggerDAO authenticationSwaggerDAO;
+	
+	@Autowired
+	private CommonCodeDAO commonCodeDAO;
 	
 	public User getUserSession() {
 		return UserSession;
@@ -75,6 +80,14 @@ public class BaseService {
 
 	public void setAuthenticationSwaggerDAO(AuthenticationSwaggerDAO authenticationSwaggerDAO) {
 		this.authenticationSwaggerDAO = authenticationSwaggerDAO;
+	}
+
+	public CommonCodeDAO getCommonCodeDAO() {
+		return commonCodeDAO;
+	}
+
+	public void setCommonCodeDAO(CommonCodeDAO commonCodeDAO) {
+		this.commonCodeDAO = commonCodeDAO;
 	}
 	
 }
